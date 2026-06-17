@@ -21,6 +21,7 @@ $script:UiColors = @{
     TextMuted    = [System.Drawing.Color]::FromArgb(96, 104, 118)
     LogBg        = [System.Drawing.Color]::FromArgb(28, 32, 38)
     LogText      = [System.Drawing.Color]::FromArgb(220, 224, 230)
+    LogInfo      = [System.Drawing.Color]::FromArgb(125, 200, 255)
 }
 
 function New-UiCard {
@@ -284,7 +285,7 @@ function Start-Processing {
 
     Initialize-SessionLog -ComputerCount $computers.Count
 
-    Write-Log -Message "Rozpoczęto przetwarzanie $($computers.Count) komputerów..." -Color ([System.Drawing.Color]::Blue)
+    Write-Log -Message "Rozpoczęto przetwarzanie $($computers.Count) komputerów..." -Color $script:UiColors.LogInfo
     Write-Log -Message "Log sesji: $script:SessionLogFile" -Color ([System.Drawing.Color]::Gray)
 
     $successCount = 0
@@ -301,7 +302,7 @@ function Start-Processing {
 
     Complete-SessionLog -SuccessCount $successCount -SkippedCount $skippedCount -FailedCount $failedCount
 
-    Write-Log -Message "Zakończono przetwarzanie. Sukces: $successCount | Pominięte: $skippedCount | Błąd: $failedCount" -Color ([System.Drawing.Color]::Blue)
+    Write-Log -Message "Zakończono przetwarzanie. Sukces: $successCount | Pominięte: $skippedCount | Błąd: $failedCount" -Color $script:UiColors.LogInfo
 
     $script:IsRunning = $false
     $script:StartButton.Enabled = $true
