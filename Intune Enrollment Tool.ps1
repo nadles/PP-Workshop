@@ -329,7 +329,7 @@ $form.Controls.Add($contentPanel)
 
 $footerPanel = New-Object System.Windows.Forms.Panel
 $footerPanel.Dock = 'Bottom'
-$footerPanel.Height = 34
+$footerPanel.Height = 36
 $footerPanel.BackColor = $script:UiColors.Surface
 $footerPanel.Padding = New-Object System.Windows.Forms.Padding(20, 0, 20, 0)
 $form.Controls.Add($footerPanel)
@@ -424,24 +424,26 @@ if (-not $script:LogBox.Font.Name.Contains('Cascadia')) {
 }
 $logCard.Controls.Add($script:LogBox)
 
+$footerInfo = New-Object System.Windows.Forms.Label
+$footerInfo.Text = "$($script:AttributeName) | wartość: $($script:ValueToAdd)"
+$footerInfo.AutoSize = $true
+$footerInfo.Dock = 'Right'
+$footerInfo.TextAlign = [System.Drawing.ContentAlignment]::MiddleRight
+$footerInfo.ForeColor = $script:UiColors.TextMuted
+$footerInfo.Font = New-Object System.Drawing.Font('Segoe UI', 8.75)
+$footerInfo.BackColor = [System.Drawing.Color]::Transparent
+$footerPanel.Controls.Add($footerInfo)
+
 $footerAuthor = New-Object System.Windows.Forms.Label
 $footerAuthor.Text = "Autor: $($script:AuthorEmail)"
+$footerAuthor.AutoSize = $true
 $footerAuthor.Dock = 'Left'
 $footerAuthor.TextAlign = [System.Drawing.ContentAlignment]::MiddleLeft
 $footerAuthor.ForeColor = $script:UiColors.TextMuted
 $footerAuthor.Font = New-Object System.Drawing.Font('Segoe UI', 8.75)
 $footerAuthor.BackColor = [System.Drawing.Color]::Transparent
+$footerAuthor.Padding = New-Object System.Windows.Forms.Padding(0, 0, 16, 0)
 $footerPanel.Controls.Add($footerAuthor)
-
-$footerInfo = New-Object System.Windows.Forms.Label
-$footerInfo.Text = "$($script:AttributeName) | wartość: $($script:ValueToAdd)"
-$footerInfo.Dock = 'Right'
-$footerInfo.TextAlign = [System.Drawing.ContentAlignment]::MiddleRight
-$footerInfo.ForeColor = $script:UiColors.TextMuted
-$footerInfo.Font = New-Object System.Drawing.Font('Segoe UI', 8.75)
-$footerInfo.AutoSize = $true
-$footerInfo.BackColor = [System.Drawing.Color]::Transparent
-$footerPanel.Controls.Add($footerInfo)
 
 $contentPanel.Add_Resize({
     $padLeft = $contentPanel.Padding.Left
